@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module: {{ module.title }}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/modules.css' %}">
+</head>
+<body>
+    <header>
+    <img src="{% static 'images/logo.png' %}" alt="KaySecure Logo" class="logo">
+        <div class="auth-buttons">
+            <button class="signup-button"><a href="/logout">Logout</a></button>
+        </div>
+</header>
+<div class="container">
+    <h1 class="text-white">{{ module.title }}</h1>
+    <p class="text-white">{{ module.description }}</p>
+    <hr>
+    <div id="slide-container" class="text-center">
+        {% for slide in slides %}
+        <img src="{{ slide.image.url }}" alt="{{ slide.title }}" class="slide img-fluid mb-3" data-slide-id="{{ slide.id }}" style="display:none;">
+        {% endfor %}
+    </div>
+    <div class="d-flex justify-content-between mb-4">
+        <button id="prevBtn" class="btn btn-secondary">Previous</button>
+        <button id="nextBtn" class="btn btn-secondary">Next</button>
+    </div>
+    
+    {% if module.quiz %}
+    <div id="submit-quiz-url" style="display: none;" data-url="{% url 'submit_quiz' quiz_id=module.quiz.id %}"></div>
+
+    <div class="quiz-container">
+        <h2 class="text-white">Quiz: {{ module.quiz.title }}</h2>
+        <button id="startQuizBtn" class="btn btn-primary mb-3" disabled>Start Quiz</button>
+        <div class="quiz-timer alert alert-info text-center" id="quizTimer" style="display:none;">Time left: 05:00</div>
+        <form id="quiz-form" class="quiz-form" method="POST" action="{% url 'submit_quiz' quiz_id=module.quiz.id %}" style="display:none;">
+            {% csrf_token %}
+            {% for question in module.quiz.question_set.all %}
+            <div class="quiz-question mb-4">
+                <p class="text-white"><strong>{{ question.text }}</strong></p>
+                {% for choice in question.choice_set.all %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" id="choice{{ choice.id }}">
+                    <label class="form-check-label text-white" for="choice{{ choice.id }}">
+                        {{ choice.text }}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Submit Quiz</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="{% static 'js/modules.js' %}" defer></script>
+</body>
+<footer>
+    <div class="footer-content">
+        <img src="{% static 'images/logo.png' %}" alt="Company Logo" class="footer-logo">
+        <p>&copy; 2024 Kayrabs Integrated Ventures Ltd. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="/terms">Terms of Service</a></li>
+        </ul>
+    </div>
+</footer>
+</html>

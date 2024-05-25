@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course.title }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/content.css' %}">
+</head>
+<body>
+<header>
+    <img src="{% static 'images/logo.png' %}" alt="KaySecure Logo" class="logo">
+    <div class="auth-buttons">
+        <button class="signup-button"><a href="/logout">Logout</a></button>
+    </div>
+</header>
+<div class="container mt-5">
+    <h1 class="text-white">{{ course.title }}</h1>
+    <p class="text-white">{{ course.description }}</p>
+    <hr class="bg-white">
+    <div class="row">
+        {% for module in modules %}
+        <div class="col-md-4 mb-3">
+            <div class="card custom-card"> 
+                <div class="card-body">
+                    <h5 class="card-title">{{ module.title }}</h5>
+                    <p class="card-text">{{ module.description }}</p>
+                    {% if module.is_unlocked %}
+                    <a href="{% url 'module_view' course_id=course.id module_id=module.id %}" class="btn custom-btn">Access Module</a>
+                    {% else %}
+                    <button class="btn btn-secondary" disabled>Locked</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-white">No modules are available at the moment.</p>
+        {% endfor %}
+    </div>
+</div>
+<footer>
+    <div class="footer-content">
+        <img src="{% static 'images/logo.png' %}" alt="Company Logo" class="footer-logo">
+        <p>&copy; 2024 Kayrabs Integrated Ventures Ltd. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="/terms">Terms of Service</a></li>
+        </ul>
+    </div>
+</footer>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
