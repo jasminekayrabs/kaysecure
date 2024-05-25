@@ -36,10 +36,6 @@ ALLOWED_HOSTS = ['*']
 # session data will be stored in the database.
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
-
-# Set the URL to redirect after a successful login
-# LOGIN_REDIRECT_URL = '/dashboard/'
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -63,11 +59,6 @@ MIDDLEWARE = [
     'csp.middleware.CSPMiddleware',
 ]
 
-#Implementing a Content Security Policy (CSP) is a powerful way to help protect your site from XSS attacks. CSP can be used to specify which resources the user agent is allowed to load for a given page. This adds an extra layer of security by helping to detect and mitigate certain types of attacks, including XSS and data injection attacks.
-# CSP_DEFAULT_SRC = ("'self'",)
-# CSP_IMG_SRC = ("'self'", 'data:', 'https://trusted.com/')
-# CSP_SCRIPT_SRC = ("'self'", 'https://trustedscripts.com/')
-# CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
 
 CSP_DEFAULT_SRC = ("'none'",)
 CSP_STYLE_SRC = (
@@ -83,18 +74,13 @@ CSP_SCRIPT_SRC = (
 CSP_IMG_SRC = (
     "'self'",
     "data:",
-    "http://127.0.0.1:8000/media/",  # Allows images from your media directory
+    "http://127.0.0.1:8000/media/",  
 )
 CSP_CONNECT_SRC = ("'self'", 'http://127.0.0.1:8000')
 
-
-
-
-# settings.py
-
-CSRF_COOKIE_DOMAIN = None  # Adjust this if your site is not saving cookies
-CSRF_COOKIE_SECURE = False  # Set to True if you are using HTTPS
-CSRF_COOKIE_HTTPONLY = False  # Set to True to prevent client-side scripts from accessing the CSRF cookie
+CSRF_COOKIE_DOMAIN = None  
+CSRF_COOKIE_SECURE = False  
+CSRF_COOKIE_HTTPONLY = False
 
 ROOT_URLCONF = 'kaysecure.urls'
 
@@ -129,9 +115,6 @@ AUTH_USER_MODEL = 'auth.User'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -147,10 +130,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -159,18 +138,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CONFIGURE APP EMAIL BACKEND
