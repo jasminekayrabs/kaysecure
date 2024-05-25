@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up - KaySecure</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <script src="{% static 'js/signup.js' %}"></script>
+</head>
+<body>
+    <div class="signup-box">
+        <h1>KaySecure Sign-Up</h1>
+        <form action="/signup" method="post" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <div class="user-box">
+                <input type="text" id="fname" name="fname" required placeholder="First Name" value="{{ fname|safe }}">
+            </div>
+            <div class="user-box">
+                <input type="text" id="lname" name="lname" required placeholder="Last Name" value="{{ lname|safe }}">
+            </div>
+            <div class="user-box">
+                <input type="text" id="username" name="username" required placeholder="Username" value="{{ username|safe }}">
+            </div>
+            <div class="user-box">
+                <input type="email" id="email" name="email" required placeholder="Email Address" value="{{ email|safe }}">
+            </div>
+            <div class="user-box">
+                <input type="password" id="pass1" name="pass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required placeholder="Password">
+                <small>Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number.</small>
+            </div>
+            <div class="user-box">
+                <input type="password" id="pass2" name="pass2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required placeholder="Confirm Password">
+                <span id="error-message" class="error-message" style="display: none;">Passwords do not match</span>
+            </div>
+            <div class="user-box terms">
+                <small>Note: username and password will be required at login!</small><br>
+                <input type="checkbox" id="termsCheckbox" name="terms" required>
+                <label for="termsCheckbox">I agree to the <a href="/terms">Terms and Conditions</a></label>
+            </div>
+            <button type="submit">SignUp</button>
+        </form>
+    </div> 
+
+    <script>
+        function validateForm() {
+            if (!document.getElementById('termsCheckbox').checked) {
+                alert('Please accept the Terms and Conditions.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

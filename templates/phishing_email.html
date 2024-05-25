@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Action Required: Verify Your Account</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            background-color: #1B2C4D;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: rgba(149, 230, 248, 0.43);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Dear {{ user.username }},</p>
+        <p>We noticed some unusual activity on your account. Please verify your account by clicking the link below:</p>
+        <p><a href="{{ phishing_url }}" class="button">Verify Account</a></p>
+        <p>Thank you,</p>
+        <p>Your Security Team</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+body {
+    background-color: #1B2C4D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Reset box styles */
+.reset-box {
+    background-color: #3A4B6A;
+    border: 5px solid #24C7EB;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+}
+
+.reset-box h2 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.reset-box p {
+    color: #fff;
+}

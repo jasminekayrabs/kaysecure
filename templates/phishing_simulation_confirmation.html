@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Simulation</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <style>
+        .return-btn {
+            color: white;
+            text-decoration: underline;
+            background-color: transparent;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+
+        .return-btn:hover {
+            text-decoration: none;
+            color: #24C7EB;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="{% static 'images/logo.png' %}" alt="KaySecure Logo" class="logo">
+    <div class="auth-buttons">
+        <button class="signup-button"><a href="/logout">Logout</a></button>
+    </div>
+</header>
+<main class="container">
+    <h1 class="text-white welcome-text">Phishing Simulation Started</h1>
+    <p class="text-white">Please check your email inbox for the simulation email. Follow the instructions provided to complete the simulation.</p>
+    <a href="{% url 'dashboard' %}" class="btn return-btn">Return to Dashboard</a>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <img src="{% static 'images/logo.png' %}" alt="Company Logo" class="footer-logo">
+        <p>&copy; 2024 Kayrabs Integrated Ventures Ltd. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="/terms">Terms of Service</a></li>
+        </ul>
+    </div>
+</footer>
+
+<!-- Optional JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
