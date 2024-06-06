@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Social Engineering Simulation</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1B2C4D;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .simulation-box {
+            background-color: rgba(46, 59, 85, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .btn-custom {
+            background-color: #24C7EB;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .btn-custom:hover {
+            background-color: #1b9bb8;
+        }
+    </style>
+</head>
+<body>
+    <div class="simulation-box">
+        <h1>Social Engineering Simulation</h1>
+        <form method="post" action="{% url 'social_engineering_simulation' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <p>Scenario: You receive a call from someone claiming to be from your bank, asking for your account number and password. What do you do?</p>
+                <label for="response">Your response:</label>
+                <textarea class="form-control" id="response" name="response" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-custom">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

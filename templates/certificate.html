@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Completion</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1B2C4D;
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+        }
+        .certificate {
+            border: 5px solid #24C7EB;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #3A4B6A;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        .disclaimer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #e0e0e0;
+        }
+        .signature {
+            margin-top: 40px;
+            font-size: 1.5em;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <h1>Certificate of Completion</h1>
+        <p>Congratulations, {{ user.username }}!</p>
+        <p>You have successfully completed the course:</p>
+        <p><strong>{{ course.title }}</strong></p>
+        <p>Keep up the great work!</p>
+        <div class="signature">
+            KaySecure.ng
+        </div>
+        <div class="disclaimer">
+            <p>Disclaimer: This certificate is not an official certification.</p>
+        </div>
+    </div>
+    <a href="/courses/dashboard" class="login-button">Return to dashboard</a>
+</body>
+</html>

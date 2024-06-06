@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Social Engineering Result</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1B2C4D;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .result-box {
+            background-color: rgba(46, 59, 85, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .btn-custom {
+            background-color: #24C7EB;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .btn-custom:hover {
+            background-color: #1b9bb8;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-box">
+        <h1>Social Engineering Result</h1>
+        <p>Your response: "<strong>{{ response }}</strong>"</p>
+        <p>Advice: Never share your account details or password over the phone. Always verify the caller's identity through official channels.</p>
+        <a href="{% url 'dashboard' %}" class="btn btn-custom">Return to Dashboard</a>
+    </div>
+</body>
+</html>

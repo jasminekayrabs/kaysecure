@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+<header>
+    <img src="{% static 'images/logo.png' %}" alt="KaySecure Logo" class="logo">
+    <div class="auth-buttons">
+        <button class="signup-button"><a href="/logout">Logout</a></button>
+    </div>
+</header>
+<main class="container">
+    <h1 class="text-white welcome-text">Welcome to your dashboard, {{ user.username }} 👋</h1>
+
+    <h2 class="text-white section-title">Your Courses</h2>
+    <div class="row">
+        {% for course in accessed_courses %}
+        <div class="col-md-4 mb-3">
+            <div class="card bg-light text-dark course-card">
+                <div class="card-body">
+                    <h3 class="card-title">{{ course.title }}</h3>
+                    <!-- <p class="card-text">{{ course.description }}</p> -->
+                    <p>Progress: {{ course.modules_completed }}/{{ course.total_modules }}</p>
+                    {% if course.progress_completed %}
+                        <strong>Course Completed!</strong>
+                        <a href="{% url 'view_certificate' course.id %}" class="btn custom-btn">View Certificate</a>
+                    {% else %}
+                        <a href="{% url 'course_content' course_id=course.id %}" class="btn custom-btn">Continue Course</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-white p-text">You haven't started any courses yet.</p>
+        {% endfor %}
+    </div>
+
+    <h2 class="text-white section-title">Recommended Courses</h2>
+    <div class="row">
+        {% for course in recommended_courses %}
+        <div class="col-md-4 mb-3">
+            <div class="card bg-light text-dark course-card">
+                <div class="card-body">
+                    <h3 class="card-title">{{ course.title }}</h3>
+                    <p class="card-text">{{ course.description }}</p>
+                    <a href="{% url 'course_content' course_id=course.id %}" class="btn custom-btn">Start Course</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-white p-text">No courses available.</p>
+        {% endfor %}
+    </div>
+
+    <h2 class="text-white section-title">Simulations</h2>
+    <p class="text-white p-text">Try our simulations to familiarize yourself with common cyber attacks.</p>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card bg-light text-dark course-card">
+                <div class="card-body">
+                    <h3 class="card-title">Phishing Simulation</h3>
+                    <p class="card-text">Experience an email phishing attack simulation and learn how to identify and avoid such threats.</p>
+                    <a href="{% url 'send_phishing_email' 1 %}" class="btn custom-btn">Start Simulation</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card bg-light text-dark course-card">
+                <div class="card-body">
+                    <h3 class="card-title">Password Cracking Simulation</h3>
+                    <p class="card-text">Learn the significance of using strong passwords.</p>
+                    <a href="{% url 'password_cracking_simulation' %}" class="btn btn-custom">Start Simulation</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card bg-light text-dark course-card">
+                <div class="card-body">
+                    <h3 class="card-title">Social Engineering Simulation</h3>
+                    <p class="card-text">Test your ability to recognise social engineering tactics.</p>
+                    <a href="{% url 'social_engineering_simulation' %}" class="btn custom-btn">Start Simulation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <img src="{% static 'images/logo.png' %}" alt="Company Logo" class="footer-logo">
+        <p>&copy; 2024 Kayrabs Integrated Ventures Ltd. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="/terms">Terms of Service</a></li>
+        </ul>
+    </div>
+</footer>
+
+<!-- Optional JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
