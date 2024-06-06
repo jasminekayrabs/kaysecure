@@ -37,7 +37,7 @@ source myenv/bin/activate
 ```bash
 git clone https://github.com/jasminekayrabs/kaysecure
 ```
-## Install Project Dependencies (Skip this step if using the existing virtual environment)
+## Install Project Dependencies
 After cloning the repository, cd into kaysecure and install dependencies;
 
 ### Install Dependencies/ Requirements from requirements.txt
