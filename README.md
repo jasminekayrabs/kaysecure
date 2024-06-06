@@ -8,6 +8,9 @@ KaySecure
 # Description: 
 KaySecure is a webapplication platform that offers cybersecurity courses and simulations for users interested in learning or building their knowedge on cybersecurity.
 
+# Demo
+Check out this [video demonstration](https://drive.google.com/file/d/137DgsldKE3EZ00Td7LJw_RO2KludM9P1/view?usp=sharing) to see the website in action!
+
 # Requirements: 
 - [Python3.9](https://www.python.org)
 - [Django](https://docs.djangoproject.com/en/4.2/)
