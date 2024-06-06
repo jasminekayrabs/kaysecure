@@ -58,6 +58,10 @@ To access the project on your local server;
 ```bash
 python manage.py runserver
 ```
+or
+```bash
+python3 manage.py runserver
+```
 ### Create Superuser (admin)
 To access the admin site, run the command below and add the '/admin' route to the url in your browser e.g. 'localhost:127.0.0.1:8000/admin';
 ```bash
