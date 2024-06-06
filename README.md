@@ -10,18 +10,26 @@ Once you are in the 'finalroject2/' directory, there is an existing virtual envi
 pip install virtualenv
 ```
 
-### Create and Activate Virtual Environment
+### Create Virtual Environment (Skip this step if using the existing virtual environment)
 #### For Windows
 ```bash
-virtualenv venv && venv\Scripts\activate
+virtualenv myenv 
 ```
 #### For macOS and Linux
 ```bash
-virtualenv venv && source venv/bin/activate
+virtualenv myenv
 ```
-
-## 2. Install Project Dependencies
-After creating and activating the virtual environment, cd into kaysecure and install dependencies;
+### Activate Virtual Environment
+#### For Windows
+```bash
+myenv\Scripts\activate
+```
+#### For macOS and Linux
+```bash
+source myenv/bin/activate
+```
+## 2. Install Project Dependencies (Skip this step if using the existing virtual environment)
+After creating and activating the new virtual environment, cd into kaysecure and install dependencies;
 
 ### Install Dependencies/ Requirements from requirements.txt
 ```bash
