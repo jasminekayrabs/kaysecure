@@ -12,6 +12,17 @@ from django.core.mail.backends.smtp import EmailBackend
 from django.http import JsonResponse
 import time
 
+from django.core.cache import cache
+from .models import Course
+
+def course_list(request):
+    # Try to get the course list from the cache
+    course_list = cache.get('course_list')
+    if not course_list:
+        # If not found in cache, fetch from the database
+        course_list = Course.objects.all()
+        # Store the course list in cache for 
+
 #Protected against SQL injections using get_object_or_404
 def course_detail(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
@@ -182,29 +193,49 @@ def view_certificate(request, course_id):
         messages.error(request, "You have not completed all modules in this course.")
         return redirect('dashboard')
 
+
+
+import logging
+logger = logging.getLogger(__name__)
+
 @login_required
 def send_phishing_email(request, template_id):
-    template = get_object_or_404(PhishingEmailTemplate, id=template_id)
-    user = request.user
+    logger.info("Initiating phishing email simulation...")
+    try:
+        template = get_object_or_404(PhishingEmailTemplate, id=template_id)
+        user = request.user
 
-    phishing_url = request.build_absolute_uri(reverse('phishing_website'))
+        phishing_url = request.build_absolute_uri(reverse('phishing_website'))
 
-    email_body = render_to_string('phishing_email.html', {
-        'user': user,
-        'phishing_url': phishing_url
-    })
+        email_body = render_to_string('phishing_email.html', {
+            'user': user,
+            'phishing_url': phishing_url
+        })
 
-    email = EmailMessage(
-        subject=template.subject,
-        body=email_body,
-        from_email=settings.PHISHING_EMAIL_FROM,
-        to=[user.email],
-        connection=PhishingEmailBackend()
-    )
-    email.content_subtype = 'html'
-    email.send()
+        email = EmailMessage(
+            subject=template.subject,
+            body=email_body,
+            from_email=settings.PHISHING_EMAIL_FROM,
+            to=[user.email],
+            connection=PhishingEmailBackend()
+        )
+        email.content_subtype = 'html'
+        email.send()
+
+        logger.info(f"Phishing email sent to {user.email}")
+
+        messages.success(request, 'Phishing simulation email sent. Please check your inbox.')
+    except Exception as e:
+        logger.error(f"Error sending phishing email: {e}")
+        messages.error(request, 'Failed to send phishing simulation email.')
 
     return redirect('phishing_simulation_confirmation')
+
+
+
+
+
+
 
 @login_required
 def phishing_simulation_confirmation(request):
@@ -250,3 +281,10 @@ def simulate_password_cracking(password):
         return 'a few hours'
     else:
         return 'several days'
+
+@login_required
+def social_engineering_simulation(request):
+    if request.method == 'POST':
+        response = request.POST.get('response')
+        return render(request, 'social_engineering_result.html', {'response': response})
+    return render(request, 'social_engineering_simulation.html')

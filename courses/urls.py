@@ -17,5 +17,6 @@ urlpatterns = [
     path('phishing_feedback/', views.phishing_feedback, name='phishing_feedback'),
     path('phishing_simulation_confirmation/', phishing_simulation_confirmation, name='phishing_simulation_confirmation'),
     path('password_cracking_simulation/', views.password_cracking_simulation, name='password_cracking_simulation'),
+    path('social_engineering_simulation/', views.social_engineering_simulation, name='social_engineering_simulation'),
 ]
 

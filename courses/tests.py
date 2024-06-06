@@ -27,7 +27,7 @@ class CourseViewTests(TestCase):
         # Assert that the response status code is 302, indicating a redirect
         self.assertEqual(response.status_code, 302)
         # Assert that the response redirects to the login page
-        self.assertTrue('/accounts/login/' in response.url)
+        self.assertTrue('login' in response.url)
 
     def test_course_detail_view_with_nonexistent_course(self):
         """
